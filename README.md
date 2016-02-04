@@ -6,6 +6,8 @@ with OpenWayback 2.3.0, OpenJDK 7, and Tomcat 8.x.
 This document assumes some familiarity with Docker.
 
 ## Building the Docker image
+To get up and running quickly, check out the prebuilt image in [our Docker Hub repository](https://hub.docker.com/r/lockss/openwayback/).
+
 1. Clone the Git repository for the latest source files (recommended for development):
 
     ```
@@ -75,6 +77,9 @@ It is worth noting that OpenWayback's preferred method for the installation of c
 preparing and using an [OpenWayback WAR overlay](https://github.com/iipc/openwayback/wiki/Creating-a-WAR-overlay),
 which is unpacked (along with the base OpenWayback WAR) when the Tomcat servlet container starts.
 We do not make use of a WAR overlay yet.
+
+## Support
+Limited support is available by contacting LOCKSS Support at support@lockss.org.
 
 ## Resources
 * OpenWayback wiki: https://github.com/iipc/openwayback/wiki
