@@ -48,7 +48,8 @@ where ARC/WARC files were staged in Step 1 (e.g. `/srv/openwayback`).
 3. Finally, point your web browser to [http://localhost:8080/wayback/](http://localhost:8080/wayback/)
 to begin using OpenWayback.
    **Note:** The base URL OpenWayback uses for link rewriting is specified by `wayback.url.prefix`
-   in `wayback.xml`. 
+   in `wayback.xml`. If this change needs to be persistent, see the notes in the next section
+   about creating a new image.
 
 ## CDX Index
 
