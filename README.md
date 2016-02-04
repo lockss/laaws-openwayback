@@ -7,7 +7,8 @@ This document assumes some familiarity with Docker.
 
 ## Building the Docker image
 1. Clone the Git repository for the latest source files (recommended for development):
-...`git clone https://github.com/lockss/openwayback-docker.git`
+...test
+... `git clone https://github.com/lockss/openwayback-docker.git`
 2. Drop into the directory containing the `Dockerfile` and run the following command:
 ...`docker build -t lockss/openwayback .`
 
