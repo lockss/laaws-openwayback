@@ -25,25 +25,25 @@ The name of the image can be changed from `lockss/openwayback` if desired.
 1. Stage your ARC/WARC files (they may be gzipped to save space) into a path somewhere on your
 filesystem. E.g.,
 
-```shell
-mkdir -p /srv/openwayback/{arc,warc}
-```
+    ```shell
+    mkdir -p /srv/openwayback/{arc,warc}
+    ```
 
 2. Start the Docker container by using `docker run lockss/openwayback` with the following parameters:
-..* `-i -t` (Starts an interactive terminal.)
-..* `--rm` (Docker will automatically remove the container, once the internal process has exited.)
-..* `-p 8080:8080` (Forwards port localhost:8080 to port 8080 within the container; this port is
+  * `-i -t` (Starts an interactive terminal.)
+  * `--rm` (Docker will automatically remove the container, once the internal process has exited.)
+  * `-p 8080:8080` (Forwards port localhost:8080 to port 8080 within the container; this port is
 used to access the OpenWayback replay UI. If there is a conflict with an existing service on your 
 machine, feel free to change the port number.)
-..* `-v /srv/openwayback:/srv/openwayback` (Maps `/srv/openwayback` on the host machine to 
+  * `-v /srv/openwayback:/srv/openwayback` (Maps `/srv/openwayback` on the host machine to 
 `/srv/openwayback` within the container. The path you map should point to the base directory path
 where ARC/WARC files were staged in Step 1 (e.g. `/srv/openwayback`).
 
-...Here is a full example:
+   Here is a full example:
 
-```shell
-docker run -i -t --rm -p 8080:8080 -v /srv/openwayback:/srv/openwayback lockss/openwayback
-```
+    ```shell
+    docker run -i -t --rm -p 8080:8080 -v /srv/openwayback:/srv/openwayback lockss/openwayback
+    ```
 
 3. Finally, point your web browser to http://localhost:8080/wayback/ to begin using OpenWayback.
 
