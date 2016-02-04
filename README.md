@@ -1,5 +1,5 @@
 ## Introduction
-This is a document of the basic usage of the Docker-ized OpenWayback image/container prepared by
+Documentation for the basic usage of the Docker-ized OpenWayback image/container prepared by
 the LOCKSS Program at Stanford University. It is based on CentOS 7.x and comes preconfigured 
 with OpenWayback, OpenJDK 7, and Tomcat 8.x.
 
@@ -7,10 +7,16 @@ This document assumes some familiarity with Docker.
 
 ## Building the Docker image
 1. Clone the Git repository for the latest source files (recommended for development):
-...test
-... `git clone https://github.com/lockss/openwayback-docker.git`
+
+    ```
+    git clone https://github.com/lockss/openwayback-docker.git
+    ```
+
 2. Drop into the directory containing the `Dockerfile` and run the following command:
-...`docker build -t lockss/openwayback .`
+
+    ```
+    docker build -t lockss/openwayback .
+    ```
 
 The name of the image can be changed from `lockss/openwayback` if desired.
 
