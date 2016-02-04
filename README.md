@@ -39,13 +39,14 @@ machine, feel free to change the port number.)
 `/srv/openwayback` within the container. The path you map should point to the base directory path
 where ARC/WARC files were staged in Step 1 (e.g. `/srv/openwayback`).
 
-   Here is a full example:
+   Here is a completeexample:
 
     ```shell
     docker run -i -t --rm -p 8080:8080 -v /srv/openwayback:/srv/openwayback lockss/openwayback
     ```
 
-3. Finally, point your web browser to http://localhost:8080/wayback/ to begin using OpenWayback.
+3. Finally, point your web browser to [http://localhost:8080/wayback/](http://localhost:8080/wayback/)
+to begin using OpenWayback.
 
 ## CDX Index
 
@@ -63,12 +64,16 @@ and path index file created earlier.
 
 This image *does not* support CDX indexing out of the box! Nor are configuration changes within a 
 launched container persistent across instances of the image. If you plan to run OpenWayback within 
-Docker containers using CDX indexing, I highly recommend creating a new image either by layering 
-modifications upon this image or modifying the Dockerfile (available upon request) to build a new 
-image. Addtionally, it is worth exploring the preparation and use of an [OpenWayback WAR overlay](https://github.com/iipc/openwayback/wiki/Creating-a-WAR-overlay).
+Docker containers using CDX indexing, I highly recommend creating a new image either by modifying
+the Dockerfile and building a new image, or by making an image out of an existing Docker container,
+contain your changes.  
+
+It is worth noting that OpenWayback's preferred method for the installation of configuration files is by 
+preparing and using an [OpenWayback WAR overlay](https://github.com/iipc/openwayback/wiki/Creating-a-WAR-overlay),
+which is unpacked (along with the base OpenWayback WAR) when the Tomcat servlet container starts.
+We do not make use of a WAR overlay yet.
 
 ## Resources
 * OpenWayback wiki: https://github.com/iipc/openwayback/wiki
 * OpenWayback binary downloads: http://search.maven.org/#browse%7C951206516
 * Docker documentation: https://docs.docker.com/
-
