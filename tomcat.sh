@@ -1,0 +1,5 @@
+#!/bin/bash
+CATALINA_HOME=/opt/tomcat
+PATH=$CATALINA_HOME/bin:$PATH
+export PATH CATALINA_HOME
+export CLASSPATH=.

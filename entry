@@ -1,0 +1,4 @@
+#!/bin/sh
+cat /etc/motd
+/opt/tomcat/bin/catalina.sh start &> /dev/null
+/bin/bash
