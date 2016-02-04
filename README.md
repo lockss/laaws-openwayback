@@ -8,7 +8,9 @@ This document assumes some familiarity with Docker.
 ## Building the Docker image
 To get up and running quickly, check out the prebuilt image in [our Docker Hub repository](https://hub.docker.com/r/lockss/openwayback/).
 
-1. Clone the Git repository for the latest source files (recommended for development):
+For development, we highly recommend building your own image:
+
+1. Clone the Git repository for the latest source files:
 
     ```
     git clone https://github.com/lockss/openwayback-docker.git
