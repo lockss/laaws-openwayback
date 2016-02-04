@@ -1,7 +1,7 @@
 ## Introduction
-Documentation for the basic usage of the Docker-ized OpenWayback image/container prepared by
+Documentation for the basic usage of the Docker-ized OpenWayback image / container prepared by
 the LOCKSS Program at Stanford University. It is based on CentOS 7.x and comes preconfigured 
-with OpenWayback, OpenJDK 7, and Tomcat 8.x.
+with OpenWayback 2.3.0, OpenJDK 7, and Tomcat 8.x.
 
 This document assumes some familiarity with Docker.
 
@@ -39,7 +39,7 @@ machine, feel free to change the port number.)
 `/srv/openwayback` within the container. The path you map should point to the base directory path
 where ARC/WARC files were staged in Step 1 (e.g. `/srv/openwayback`).
 
-   Here is a completeexample:
+   Here is a complete example:
 
     ```shell
     docker run -i -t --rm -p 8080:8080 -v /srv/openwayback:/srv/openwayback lockss/openwayback
@@ -47,6 +47,8 @@ where ARC/WARC files were staged in Step 1 (e.g. `/srv/openwayback`).
 
 3. Finally, point your web browser to [http://localhost:8080/wayback/](http://localhost:8080/wayback/)
 to begin using OpenWayback.
+   **Note:** The base URL OpenWayback uses for link rewriting is specified by `wayback.url.prefix`
+   in `wayback.xml`. 
 
 ## CDX Index
 
