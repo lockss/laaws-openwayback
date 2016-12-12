@@ -5,9 +5,9 @@ MAINTAINER "Daniel Vargas" <dlvargas@stanford.edu>
 RUN yum -y install java tar lsof vim openssh-clients
 RUN yum -y update && yum clean all
 
-RUN curl -SL http://apache.claz.org/tomcat/tomcat-8/v8.0.30/bin/apache-tomcat-8.0.30.tar.gz \
+RUN curl -SL http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-8/v8.5.9/bin/apache-tomcat-8.5.9.tar.gz \ 
   | tar xzC /opt && \
-    ln -s /opt/apache-tomcat-8.0.30 /opt/tomcat
+    ln -s /opt/apache-tomcat-8.5.9 /opt/tomcat
 
 WORKDIR /opt/tomcat/webapps
 RUN rm -rf {ROOT,docs,examples}
@@ -33,5 +33,4 @@ WORKDIR /opt/tomcat
 
 EXPOSE 8080
 
-#CMD ["/usr/bin/echo", "For now, try: docker run -t -i --rm -p 8080:8080 lockss/openwayback /bin/bash"]
-CMD ["/usr/local/bin/entry"]
+CMD ["/opt/tomcat/bin/catalina.sh", "run"]
