@@ -24,10 +24,12 @@ RUN /opt/tomcat/bin/catalina.sh start && \
 ADD wayback.xml /opt/tomcat/webapps/ROOT/WEB-INF/
 RUN mkdir -p /srv/openwayback
   
+# XXX Only necessary for debugging
 ADD tomcat.sh /etc/profile.d/
-ADD motd /etc/motd
-ADD entry /usr/local/bin/
-RUN chmod +x /usr/local/bin/entry
+
+#ADD motd /etc/motd
+#ADD entry /usr/local/bin/
+#RUN chmod +x /usr/local/bin/entry
 
 WORKDIR /opt/tomcat
 
