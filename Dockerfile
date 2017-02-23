@@ -5,15 +5,15 @@ MAINTAINER "Daniel Vargas" <dlvargas@stanford.edu>
 RUN yum -y install java tar lsof vim openssh-clients
 RUN yum -y update && yum clean all
 
-RUN curl -SL http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-8/v8.5.9/bin/apache-tomcat-8.5.9.tar.gz \ 
+RUN curl -SL http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz \
   | tar xzC /opt && \
-    ln -s /opt/apache-tomcat-8.5.9 /opt/tomcat
+    ln -s /opt/apache-tomcat-8.5.11 /opt/tomcat
 
 WORKDIR /opt/tomcat/webapps
 RUN rm -rf {ROOT,docs,examples}
-RUN curl -SL http://search.maven.org/remotecontent?filepath=org/netpreserve/openwayback/openwayback-dist/2.3.0/openwayback-dist-2.3.0.tar.gz \
-  | tar xz openwayback/openwayback-2.3.0.war && \
-    mv openwayback/openwayback-2.3.0.war ROOT.war && \
+RUN curl -SL http://search.maven.org/remotecontent?filepath=org/netpreserve/openwayback/openwayback-dist/2.3.1/openwayback-dist-2.3.1.tar.gz \
+  | tar xz openwayback/openwayback-2.3.1.war && \
+    mv openwayback/openwayback-2.3.1.war ROOT.war && \
     rmdir openwayback
 
 # Workaround to preparing an OpenWayback WAR overlay
@@ -23,7 +23,7 @@ RUN /opt/tomcat/bin/catalina.sh start && \
 
 ADD wayback.xml /opt/tomcat/webapps/ROOT/WEB-INF/
 RUN mkdir -p /srv/openwayback
-  
+
 # XXX Only necessary for debugging
 ADD tomcat.sh /etc/profile.d/
 
