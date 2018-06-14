@@ -21,7 +21,7 @@ RUN curl -SL http://search.maven.org/remotecontent?filepath=org/netpreserve/open
 
 # XXX Only necessary for debugging
 ADD tomcat/tomcat.sh /etc/profile.d/
-ADD tomcat/setenv.sh /opt/tomcat/conf/
+ADD tomcat/setenv.sh /opt/tomcat/bin/
 ADD tomcat/server.xml /opt/tomcat/conf/
 
 CMD ["/opt/tomcat/bin/catalina.sh", "run"]
