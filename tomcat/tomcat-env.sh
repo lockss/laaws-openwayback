@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Copyright (c) 2000-2018, Board of Trustees of Leland Stanford Jr. University
 # All rights reserved.
 #
@@ -26,38 +28,5 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-FROM centos:latest
-
-MAINTAINER "Daniel Vargas" <dlvargas@stanford.edu>
-
-RUN rpm --import https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/RPM-GPG-KEY-cloudera
-# RUN curl -o /etc/yum.repos.d/cloudera-cdh5.repo https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/cloudera-cdh5.repo
-ADD cloudera/cloudera.repo /etc/yum.repos.d/cloudera-cdh5.repo
-
-# Install and update packages
-RUN yum -y install java tar lsof vim openssh-clients hadoop-hdfs-fuse
-RUN yum -y update && yum clean all && rm -rf /var/cache/yum
-
-# Install Apache Tomcat
-RUN curl -SL https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz \
-  | tar xzC /opt && \
-    ln -s /opt/apache-tomcat-8.5.11 /opt/tomcat
-
-# Cleanup webapps directory
-RUN rm -rf /opt/tomcat/webapps/{ROOT,docs,examples}
-
-# Install the OpenWayback webapp
-RUN curl -SL http://search.maven.org/remotecontent?filepath=org/netpreserve/openwayback/openwayback-dist/2.3.1/openwayback-dist-2.3.1.tar.gz \
-  | tar xz openwayback/openwayback-2.3.1.war && \
-    mv openwayback/openwayback-2.3.1.war /opt/tomcat/webapps/ROOT.war && \
-    rmdir openwayback
-
-# Add scripts and configuration files
-ADD tomcat/tomcat-env.sh /etc/profile.d/
-ADD tomcat/bin/setenv.sh /opt/tomcat/bin/
-ADD tomcat/conf/server.xml /opt/tomcat/conf/
-
-ADD scripts/init.sh /init.sh
-
-# Set container entrypoint
-ENTRYPOINT ["/init.sh"]
+export CATALINA_HOME=/opt/tomcat
+export PATH=${CATALINA_HOME}/bin:$PATH
