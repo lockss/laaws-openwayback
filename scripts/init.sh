@@ -28,8 +28,22 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-# TODO: Mount a HDFS path if one was provided
-# hadoop-hdfs-fuse "dfs://laaws-demo-hdfs:9000/" /mnt/fusehdfs
+# Mount a HDFS path if one was provided
+if [ ! -z ${HDFS_HOST} ]; then
+  echo "Mounting HDFS path to OpenWayback watch directory (hdfs://${HDFS_HOST:-localhost}:${HDFS_FSMD:-9000}/ -> ${WAYBACK_BASEDIR}/files2)"
+
+  # Wait for HDFS to become available
+  while ! nc -z ${HDFS_HOST:-localhost} ${HDFS_FSMD:-9000} ; do
+      echo "Could not connect to hdfs://${HDFS_HOST:-localhost}:${HDFS_FSMD:-9000}/; retrying in 5 seconds..."
+      sleep 5
+  done
+
+  # Create mount point
+  mkdir -p ${WAYBACK_BASEDIR}/files2
+
+  # Attempt to mount HDFS sealed WARCs to OpenWayback watch directory
+  hadoop-fuse-dfs "dfs://${HDFS_HOST:-localhost}:${HDFS_FSMD:-9000}/${REPO_BASEDIR}/sealed" ${WAYBACK_BASEDIR}/files2
+fi
 
 # Start OpenWayback
 /opt/tomcat/bin/catalina.sh run
