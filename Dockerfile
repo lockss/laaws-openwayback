@@ -30,9 +30,12 @@ FROM centos:latest
 
 MAINTAINER "Daniel Vargas" <dlvargas@stanford.edu>
 
+# Set container entrypoint
+ENTRYPOINT ["/init.sh"]
+
 RUN rpm --import https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/RPM-GPG-KEY-cloudera
 # RUN curl -o /etc/yum.repos.d/cloudera-cdh5.repo https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/cloudera-cdh5.repo
-ADD cloudera/cloudera.repo /etc/yum.repos.d/cloudera-cdh5.repo
+ADD cloudera/cloudera-cdh5.repo /etc/yum.repos.d/cloudera-cdh5.repo
 
 # Install and update packages
 RUN yum -y install java tar lsof vim openssh-clients hadoop-hdfs-fuse
@@ -58,6 +61,3 @@ ADD tomcat/bin/setenv.sh /opt/tomcat/bin/
 ADD tomcat/conf/server.xml /opt/tomcat/conf/
 
 ADD scripts/init.sh /init.sh
-
-# Set container entrypoint
-ENTRYPOINT ["/init.sh"]
