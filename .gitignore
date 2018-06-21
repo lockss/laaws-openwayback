@@ -1,0 +1,9 @@
+/bin/
+/.project
+
+.idea/
+*.iml
+/.buildconfig
+/config/*.opt
+/config/*/*.opt
+/download/
