@@ -34,8 +34,7 @@ MAINTAINER "Daniel Vargas" <dlvargas@stanford.edu>
 ENTRYPOINT ["/init.sh"]
 
 RUN rpm --import https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/RPM-GPG-KEY-cloudera
-# RUN curl -o /etc/yum.repos.d/cloudera-cdh5.repo https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/cloudera-cdh5.repo
-ADD cloudera/cloudera-cdh5.repo /etc/yum.repos.d/cloudera-cdh5.repo
+RUN curl -o /etc/yum.repos.d/cloudera-cdh5.repo https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/cloudera-cdh5.repo
 
 # Install and update packages
 RUN yum -y install java tar lsof vim openssh-clients hadoop-hdfs-fuse
@@ -50,10 +49,7 @@ RUN curl -SL https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-
 RUN rm -rf /opt/tomcat/webapps/{ROOT,docs,examples}
 
 # Install the OpenWayback webapp
-RUN curl -SL http://search.maven.org/remotecontent?filepath=org/netpreserve/openwayback/openwayback-dist/2.3.1/openwayback-dist-2.3.1.tar.gz \
-  | tar xz openwayback/openwayback-2.3.1.war && \
-    mv openwayback/openwayback-2.3.1.war /opt/tomcat/webapps/ROOT.war && \
-    rmdir openwayback
+ADD target/laaws-openwayback-2.3.2.war /opt/tomcat/webapps/ROOT.war
 
 # Add scripts and configuration files
 ADD tomcat/tomcat-env.sh /etc/profile.d/
