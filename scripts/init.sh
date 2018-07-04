@@ -30,7 +30,7 @@
 
 # Mount a HDFS path if one was provided
 if [ ! -z ${HDFS_HOST} ]; then
-  echo "Mounting HDFS path to OpenWayback watch directory (hdfs://${HDFS_HOST:-localhost}:${HDFS_FSMD:-9000}/ -> ${WAYBACK_BASEDIR}/files2)"
+  echo "Mounting HDFS path to OpenWayback watch directory (hdfs://${HDFS_HOST:-localhost}:${HDFS_FSMD:-9000}/ -> ${WAYBACK_HDFSMNT})"
 
   # Wait for HDFS to become available
   while ! nc -z ${HDFS_HOST:-localhost} ${HDFS_FSMD:-9000} ; do
@@ -39,10 +39,14 @@ if [ ! -z ${HDFS_HOST} ]; then
   done
 
   # Create mount point
-  mkdir -p ${WAYBACK_BASEDIR}/files2
+  mkdir -p ${WAYBACK_HDFSMNT}
 
   # Attempt to mount HDFS sealed WARCs to OpenWayback watch directory
-  hadoop-fuse-dfs "dfs://${HDFS_HOST:-localhost}:${HDFS_FSMD:-9000}/${REPO_BASEDIR}/sealed" ${WAYBACK_BASEDIR}/files2
+  hadoop-fuse-dfs "dfs://${HDFS_HOST:-localhost}:${HDFS_FSMD:-9000}/" ${WAYBACK_HDFSMNT}
+
+  # Ensure the sealed directory exists (-p doesn't work - only used here so that mkdir is quiet if the directory already exists)
+  mkdir -p ${WAYBACK_HDFSMNT}/${REPO_BASEDIR}
+  mkdir -p ${WAYBACK_HDFSMNT}/${REPO_BASEDIR}/sealed
 fi
 
 # Start OpenWayback
