@@ -5,7 +5,7 @@ MAINTAINER "Daniel Vargas" <dlvargas@stanford.edu>
 RUN yum -y install java tar lsof vim openssh-clients
 RUN yum -y update && yum clean all
 
-RUN curl -SL http://mirror.cc.columbia.edu/pub/software/apache/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz \
+RUN curl -SL https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz \
   | tar xzC /opt && \
     ln -s /opt/apache-tomcat-8.5.11 /opt/tomcat
 
