@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This project is deprecated.
+
 ## Introduction
 Documentation for the basic usage of the Docker-ized OpenWayback image / container prepared by
 the LOCKSS Program at Stanford University. It is based on CentOS 7.x and comes preconfigured 
