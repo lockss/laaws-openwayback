@@ -1,6 +1,8 @@
 # DEPRECATED
 
-This project is deprecated.
+**This project is deprecated.**
+
+----
 
 ## Introduction
 Documentation for the basic usage of the Docker-ized OpenWayback image / container prepared by
