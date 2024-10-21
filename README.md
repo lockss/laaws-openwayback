@@ -1,6 +1,20 @@
-# DEPRECATED
+**ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED**
 
-**This project is deprecated.**
+```
+  ##    ####    ###   #    #  ###  #   #  #####  #####   
+ #  #   #   #  #   #  #    #   #   #   #  #       #   #  
+#    #  #   #  #      #    #   #   #   #  #       #   #  
+#    #  #   #  #      #    #   #    # #   #       #   #  
+#    #  ####   #      ######   #    # #   ####    #   #  
+######  ##     #      #    #   #    # #   #       #   #  
+#    #  # #    #      #    #   #     #    #       #   #  
+#    #  #  #   #   #  #    #   #     #    #       #   #  
+#    #  #   #   ###   #    #  ###    #    #####  #####  
+```
+
+**ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED ARCHIVED**
+
+**This Git repository is obsolete and has been archived.**
 
 ----
 
