@@ -15,10 +15,10 @@
     <property name="properties">
       <value>
         <!-- Customize these basic placeholders. -->
-        wayback.basedir.default=/tmp/openwayback
+        wayback.basedir.default=/srv/openwayback
         wayback.url.scheme.default=http
-        wayback.url.host.default=localhost
-        wayback.url.port.default=8080
+        wayback.url.host.default=wayback.clockss.org
+        wayback.url.port.default=8000
 
         <!-- Environment variables (if present) override defaults. No need to customize these. -->
         wayback.basedir=#{ systemEnvironment['WAYBACK_BASEDIR'] ?: '${wayback.basedir.default}' }
@@ -35,8 +35,8 @@
 
         <!-- Customize or add additional placeholders if needed to use elsewhere.
              Check BDBCollection.xml for following placeholders being used. -->
-        wayback.archivedir.1=${wayback.basedir}/files1/
-        wayback.archivedir.2=${wayback.basedir}/files2/
+        wayback.archivedir.1=${wayback.basedir}/arcs/
+        wayback.archivedir.2=${wayback.basedir}/warcs/
       </value>
     </property>
   </bean>

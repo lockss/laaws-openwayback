@@ -1,9 +1,10 @@
-FROM centos:latest
+# FROM centos:latest
+FROM rockylinux:9
 
 MAINTAINER "Daniel Vargas" <dlvargas@stanford.edu>
 
-RUN yum -y install java tar lsof vim openssh-clients
-RUN yum -y update && yum clean all
+RUN dnf -y install java-1.8.0-openjdk-devel tar lsof vim openssh-clients
+RUN dnf -y update && yum clean all
 
 RUN curl -SL https://archive.apache.org/dist/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz \
   | tar xzC /opt && \
@@ -22,10 +23,13 @@ RUN /opt/tomcat/bin/catalina.sh start && \
     /opt/tomcat/bin/catalina.sh stop
 
 ADD wayback.xml /opt/tomcat/webapps/ROOT/WEB-INF/
+
 RUN mkdir -p /srv/openwayback
 
 # XXX Only necessary for debugging
 ADD tomcat.sh /etc/profile.d/
+
+ADD server.xml /opt/tomcat/conf
 
 #ADD motd /etc/motd
 #ADD entry /usr/local/bin/
