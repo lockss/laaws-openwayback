@@ -24,6 +24,10 @@ RUN /opt/tomcat/bin/catalina.sh start && \
 
 ADD wayback.xml /opt/tomcat/webapps/ROOT/WEB-INF/
 
+# There's a web.xml in /opt/tomcat/webapps/ROOT/WEB-INF/
+# ADD it with a rateLimitFilter
+ADD web.xml /opt/tomcat/webapps/ROOT/WEB-INF/
+
 RUN mkdir -p /srv/openwayback
 
 # XXX Only necessary for debugging
