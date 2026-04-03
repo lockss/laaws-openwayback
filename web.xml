@@ -63,10 +63,10 @@
         </init-param>
 
         <!-- Track by client IP -->
-        <init-param>
+        <!--<init-param>
             <param-name>bucketType</param-name>
             <param-value>IP</param-value>
-        </init-param>
+        </init-param>-->
     </filter>
 
     <filter-mapping>
