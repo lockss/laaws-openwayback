@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  wayback:
+    build: .
+    container_name: wayback-tomcat
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - /lockss/openwayback:/srv/openwayback
+      - /opt/apache-tomcat-8.5.11/logs:/opt/tomcat/logs
