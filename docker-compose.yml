@@ -5,8 +5,19 @@ services:
     build: .
     container_name: wayback-tomcat
     ports:
-      - "8000:8000"
+      - "8000"
     restart: unless-stopped
     volumes:
       - /lockss/openwayback:/srv/openwayback
       - /opt/apache-tomcat-8.5.11/logs:/opt/tomcat/logs
+  nginx:
+    image: nginx:latest
+    container_name: wayback-nginx
+    ports:
+      - "8000:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-logs:/var/log/nginx
+    depends_on:
+      - wayback
+    restart: unless-stopped
